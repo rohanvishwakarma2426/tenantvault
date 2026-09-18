@@ -1,7 +1,13 @@
 services:
   db:
-    image: postgres:17
+    build:
+      context: ./db
+      dockerfile: Dockerfile
     container_name: tenantvault-db
+    command: >
+      postgres
+      -c shared_preload_libraries=pgaudit
+      -c pgaudit.log=write,ddl
     environment:
       POSTGRES_PASSWORD: admin123
       POSTGRES_DB: tenantvault
