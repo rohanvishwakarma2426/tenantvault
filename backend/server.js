@@ -145,3 +145,7 @@ app.get('/access-logs', async (req, res) => {
     req.dbClient.release();
   }
 });
+
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
